@@ -129,6 +129,7 @@ function App() {
       />
       <TaskList
         tasks={filteredTasks}
+        totalTasks={tasks.length}
         onToggleTask={handleToggleTask}
         onDeleteTask={handleDeleteTask}
         onEditTask={handleEditTask}

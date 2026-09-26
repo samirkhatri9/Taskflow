@@ -69,7 +69,9 @@ function TaskItem({ task, onToggleTask, onDeleteTask, onEditTask }) {
         <>
           <h2>{task.title}</h2>
           <p className="task-description">{task.description}</p>
-          <p className="task-category">Category: {task.category}</p>
+          <p className="task-category">
+            Category: <span className="category-badge">{task.category}</span>
+          </p>
         </>
       )}
 

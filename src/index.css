@@ -5,13 +5,20 @@
 body {
   margin: 0;
   min-width: 320px;
-  background-color: #f4f6f8;
+  background-color: #f7f8fa;
   color: #243447;
   font-family: Arial, sans-serif;
 }
 
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
 .app-container {
-  width: min(90%, 700px);
+  width: min(92%, 760px);
   margin: 48px auto;
 }
 
@@ -24,25 +31,35 @@ body {
   font-size: 2rem;
 }
 
-.header p {
-  margin: 0;
+.header p,
+.task-description,
+.task-category,
+.task-status,
+.empty-state p {
   color: #5f6b76;
 }
 
-.task-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 24px;
-  padding: 16px 24px;
+.task-stats,
+.task-form,
+.task-card,
+.empty-state {
   background-color: #ffffff;
   border: 1px solid #dfe4ea;
   border-radius: 8px;
 }
 
+.task-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-bottom: 24px;
+  padding: 16px 20px;
+}
+
 .task-stats p {
   margin: 0;
   font-size: 0.9rem;
+  font-weight: bold;
 }
 
 .task-form {
@@ -50,48 +67,66 @@ body {
   gap: 8px;
   margin-bottom: 24px;
   padding: 24px;
-  background-color: #ffffff;
-  border: 1px solid #dfe4ea;
-  border-radius: 8px;
 }
 
-.task-form h2 {
+.task-form h2,
+.task-card h2,
+.empty-state h2 {
   margin: 0 0 8px;
+}
+
+.task-form h2,
+.task-card h2 {
   font-size: 1.25rem;
 }
 
-.task-form label {
+.task-form label,
+.edit-fields label {
   font-size: 0.9rem;
   font-weight: bold;
 }
 
 .task-form input,
 .task-form textarea,
-.task-form select {
+.task-form select,
+.edit-fields input,
+.edit-fields textarea,
+.edit-fields select,
+.filter-bar select,
+.filter-bar input {
   width: 100%;
   padding: 10px;
   border: 1px solid #cbd3dc;
   border-radius: 4px;
-  font: inherit;
+  background-color: #ffffff;
+  color: #243447;
 }
 
-.task-form textarea {
+.task-form textarea,
+.edit-fields textarea {
   resize: vertical;
+}
+
+.task-form button,
+.task-actions button,
+.filter-bar button {
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .task-form button {
   width: fit-content;
   margin-top: 8px;
   padding: 10px 16px;
-  border: 0;
-  border-radius: 4px;
   background-color: #2d6cdf;
   color: #ffffff;
-  font: inherit;
-  cursor: pointer;
 }
 
-.task-form button:hover {
+.task-form button:hover,
+.edit-button:hover,
+.save-button:hover,
+.filter-bar button.active-filter:hover {
   background-color: #2459b9;
 }
 
@@ -102,14 +137,17 @@ body {
   margin-bottom: 16px;
 }
 
+.filter-bar button,
+.filter-bar select,
+.filter-bar input {
+  min-height: 40px;
+}
+
 .filter-bar button {
   padding: 8px 12px;
   border: 1px solid #cbd3dc;
-  border-radius: 4px;
   background-color: #ffffff;
   color: #243447;
-  font: inherit;
-  cursor: pointer;
 }
 
 .filter-bar button.active-filter {
@@ -118,14 +156,8 @@ body {
   color: #ffffff;
 }
 
-.filter-bar select,
-.filter-bar input {
-  padding: 8px 12px;
-  border: 1px solid #cbd3dc;
-  border-radius: 4px;
-  background-color: #ffffff;
-  color: #243447;
-  font: inherit;
+.filter-bar select {
+  width: auto;
 }
 
 .filter-bar input {
@@ -139,19 +171,12 @@ body {
 }
 
 .task-card {
-  padding: 24px;
-  background-color: #ffffff;
-  border: 1px solid #dfe4ea;
-  border-radius: 8px;
-}
-
-.task-card h2 {
-  margin: 0 0 8px;
-  font-size: 1.25rem;
+  padding: 20px;
 }
 
 .task-card.completed {
-  opacity: 0.65;
+  background-color: #f8fafc;
+  opacity: 0.7;
 }
 
 .task-card.completed h2 {
@@ -162,7 +187,6 @@ body {
 .task-category,
 .task-status {
   margin: 8px 0 0;
-  color: #5f6b76;
 }
 
 .task-category,
@@ -170,34 +194,26 @@ body {
   font-size: 0.9rem;
 }
 
+.category-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background-color: #e8f0fe;
+  color: #2459b9;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
 .edit-fields {
   display: grid;
   gap: 8px;
 }
 
-.edit-fields label {
-  font-size: 0.9rem;
-  font-weight: bold;
-}
-
-.edit-fields input,
-.edit-fields textarea,
-.edit-fields select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #cbd3dc;
-  border-radius: 4px;
-  font: inherit;
-}
-
-.edit-fields textarea {
-  resize: vertical;
-}
-
 .task-actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
+  gap: 8px 12px;
   margin-top: 16px;
 }
 
@@ -205,26 +221,18 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
+  margin-right: 4px;
   font-size: 0.9rem;
 }
 
 .task-actions button {
   padding: 8px 12px;
-  border: 0;
-  border-radius: 4px;
   color: #ffffff;
-  font: inherit;
-  cursor: pointer;
 }
 
 .edit-button,
 .save-button {
   background-color: #2d6cdf;
-}
-
-.edit-button:hover,
-.save-button:hover {
-  background-color: #2459b9;
 }
 
 .cancel-button {
@@ -243,9 +251,33 @@ body {
   background-color: #a82f2f;
 }
 
-@media (max-width: 480px) {
+.empty-state {
+  padding: 36px 24px;
+  text-align: center;
+}
+
+.empty-state p {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
   .app-container {
     width: calc(100% - 32px);
     margin: 32px auto;
+  }
+
+  .task-form,
+  .task-card {
+    padding: 16px;
+  }
+
+  .filter-bar select,
+  .filter-bar input {
+    width: 100%;
+    flex-basis: 100%;
+  }
+
+  .task-actions {
+    align-items: flex-start;
   }
 }
