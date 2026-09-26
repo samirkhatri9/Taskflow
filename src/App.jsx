@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import Header from './components/Header'
+import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
 
 function App() {
-  const [tasks] = useState([
+  const [tasks, setTasks] = useState([
     {
       id: 1,
       title: 'Finish React assignment',
@@ -27,9 +28,14 @@ function App() {
     },
   ])
 
+  function addTask(newTask) {
+    setTasks([...tasks, newTask])
+  }
+
   return (
     <main className="app-container">
       <Header />
+      <TaskForm onAddTask={addTask} />
       <TaskList tasks={tasks} />
     </main>
   )

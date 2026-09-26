@@ -29,6 +29,56 @@ body {
   color: #5f6b76;
 }
 
+.task-form {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 24px;
+  background-color: #ffffff;
+  border: 1px solid #dfe4ea;
+  border-radius: 8px;
+}
+
+.task-form h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.task-form label {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.task-form input,
+.task-form textarea,
+.task-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbd3dc;
+  border-radius: 4px;
+  font: inherit;
+}
+
+.task-form textarea {
+  resize: vertical;
+}
+
+.task-form button {
+  width: fit-content;
+  margin-top: 8px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 4px;
+  background-color: #2d6cdf;
+  color: #ffffff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.task-form button:hover {
+  background-color: #2459b9;
+}
+
 .task-list {
   display: grid;
   gap: 16px;
