@@ -29,6 +29,22 @@ body {
   color: #5f6b76;
 }
 
+.task-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 16px 24px;
+  background-color: #ffffff;
+  border: 1px solid #dfe4ea;
+  border-radius: 8px;
+}
+
+.task-stats p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
 .task-form {
   display: grid;
   gap: 8px;
@@ -77,6 +93,28 @@ body {
 
 .task-form button:hover {
   background-color: #2459b9;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filter-bar button {
+  padding: 8px 12px;
+  border: 1px solid #cbd3dc;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #243447;
+  font: inherit;
+  cursor: pointer;
+}
+
+.filter-bar button.active-filter {
+  border-color: #2d6cdf;
+  background-color: #2d6cdf;
+  color: #ffffff;
 }
 
 .task-list {

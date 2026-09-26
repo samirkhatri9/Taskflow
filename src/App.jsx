@@ -2,6 +2,8 @@ import { useState } from 'react'
 import Header from './components/Header'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
+import FilterBar from './components/FilterBar'
+import TaskStats from './components/TaskStats'
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -27,6 +29,7 @@ function App() {
       completed: true,
     },
   ])
+  const [currentFilter, setCurrentFilter] = useState('All')
 
   function addTask(newTask) {
     setTasks([...tasks, newTask])
@@ -61,12 +64,27 @@ function App() {
     setTasks(updatedTasks)
   }
 
+  let filteredTasks = tasks
+
+  if (currentFilter === 'Active') {
+    filteredTasks = tasks.filter((task) => task.completed === false)
+  }
+
+  if (currentFilter === 'Completed') {
+    filteredTasks = tasks.filter((task) => task.completed === true)
+  }
+
   return (
     <main className="app-container">
       <Header />
+      <TaskStats tasks={tasks} />
       <TaskForm onAddTask={addTask} />
+      <FilterBar
+        currentFilter={currentFilter}
+        onFilterChange={setCurrentFilter}
+      />
       <TaskList
-        tasks={tasks}
+        tasks={filteredTasks}
         onToggleTask={handleToggleTask}
         onDeleteTask={handleDeleteTask}
         onEditTask={handleEditTask}
