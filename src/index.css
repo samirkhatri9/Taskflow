@@ -29,17 +29,33 @@ body {
   color: #5f6b76;
 }
 
-.task-placeholder {
-  padding: 32px;
+.task-list {
+  display: grid;
+  gap: 16px;
+}
+
+.task-card {
+  padding: 24px;
   background-color: #ffffff;
   border: 1px solid #dfe4ea;
   border-radius: 8px;
-  text-align: center;
 }
 
-.task-placeholder p {
-  margin: 0;
+.task-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.task-description,
+.task-category,
+.task-status {
+  margin: 8px 0 0;
   color: #5f6b76;
+}
+
+.task-category,
+.task-status {
+  font-size: 0.9rem;
 }
 
 @media (max-width: 480px) {
