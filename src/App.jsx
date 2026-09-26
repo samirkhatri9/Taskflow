@@ -30,6 +30,8 @@ function App() {
     },
   ])
   const [currentFilter, setCurrentFilter] = useState('All')
+  const [categoryFilter, setCategoryFilter] = useState('All Categories')
+  const [searchTerm, setSearchTerm] = useState('')
 
   function addTask(newTask) {
     setTasks([...tasks, newTask])
@@ -74,6 +76,26 @@ function App() {
     filteredTasks = tasks.filter((task) => task.completed === true)
   }
 
+  if (categoryFilter !== 'All Categories') {
+    filteredTasks = filteredTasks.filter(
+      (task) => task.category === categoryFilter,
+    )
+  }
+
+  const lowerCaseSearchTerm = searchTerm.toLowerCase()
+
+  if (lowerCaseSearchTerm !== '') {
+    filteredTasks = filteredTasks.filter((task) => {
+      const taskTitle = task.title.toLowerCase()
+      const taskDescription = task.description.toLowerCase()
+
+      return (
+        taskTitle.includes(lowerCaseSearchTerm) ||
+        taskDescription.includes(lowerCaseSearchTerm)
+      )
+    })
+  }
+
   return (
     <main className="app-container">
       <Header />
@@ -82,6 +104,10 @@ function App() {
       <FilterBar
         currentFilter={currentFilter}
         onFilterChange={setCurrentFilter}
+        categoryFilter={categoryFilter}
+        onCategoryFilterChange={setCategoryFilter}
+        searchTerm={searchTerm}
+        onSearchTermChange={setSearchTerm}
       />
       <TaskList
         tasks={filteredTasks}

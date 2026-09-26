@@ -1,4 +1,11 @@
-function FilterBar({ currentFilter, onFilterChange }) {
+function FilterBar({
+  currentFilter,
+  onFilterChange,
+  categoryFilter,
+  onCategoryFilterChange,
+  searchTerm,
+  onSearchTermChange,
+}) {
   const allButtonClass = currentFilter === 'All' ? 'active-filter' : ''
   const activeButtonClass = currentFilter === 'Active' ? 'active-filter' : ''
   const completedButtonClass = currentFilter === 'Completed' ? 'active-filter' : ''
@@ -26,6 +33,25 @@ function FilterBar({ currentFilter, onFilterChange }) {
       >
         Completed
       </button>
+
+      <select
+        aria-label="Category filter"
+        value={categoryFilter}
+        onChange={(event) => onCategoryFilterChange(event.target.value)}
+      >
+        <option value="All Categories">All Categories</option>
+        <option value="Work">Work</option>
+        <option value="Personal">Personal</option>
+        <option value="Study">Study</option>
+        <option value="Health">Health</option>
+      </select>
+
+      <input
+        type="search"
+        placeholder="Search tasks..."
+        value={searchTerm}
+        onChange={(event) => onSearchTermChange(event.target.value)}
+      />
     </section>
   )
 }
