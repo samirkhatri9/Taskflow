@@ -96,6 +96,14 @@ body {
   font-size: 1.25rem;
 }
 
+.task-card.completed {
+  opacity: 0.65;
+}
+
+.task-card.completed h2 {
+  text-decoration: line-through;
+}
+
 .task-description,
 .task-category,
 .task-status {
@@ -106,6 +114,34 @@ body {
 .task-category,
 .task-status {
   font-size: 0.9rem;
+}
+
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.task-actions label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.task-actions button {
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 4px;
+  background-color: #c93c3c;
+  color: #ffffff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.task-actions button:hover {
+  background-color: #a82f2f;
 }
 
 @media (max-width: 480px) {

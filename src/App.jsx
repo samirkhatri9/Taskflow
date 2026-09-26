@@ -32,11 +32,32 @@ function App() {
     setTasks([...tasks, newTask])
   }
 
+  function handleToggleTask(taskId) {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, completed: !task.completed }
+      }
+
+      return task
+    })
+
+    setTasks(updatedTasks)
+  }
+
+  function handleDeleteTask(taskId) {
+    const remainingTasks = tasks.filter((task) => task.id !== taskId)
+    setTasks(remainingTasks)
+  }
+
   return (
     <main className="app-container">
       <Header />
       <TaskForm onAddTask={addTask} />
-      <TaskList tasks={tasks} />
+      <TaskList
+        tasks={tasks}
+        onToggleTask={handleToggleTask}
+        onDeleteTask={handleDeleteTask}
+      />
     </main>
   )
 }
