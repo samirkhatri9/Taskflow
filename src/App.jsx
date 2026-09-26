@@ -1,37 +1,55 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
 import FilterBar from './components/FilterBar'
 import TaskStats from './components/TaskStats'
 
+const defaultTasks = [
+  {
+    id: 1,
+    title: 'Finish React assignment',
+    description: 'Complete the task manager project',
+    category: 'Study',
+    completed: false,
+  },
+  {
+    id: 2,
+    title: 'Buy groceries',
+    description: 'Pick up ingredients for dinner',
+    category: 'Personal',
+    completed: false,
+  },
+  {
+    id: 3,
+    title: 'Review class notes',
+    description: 'Read the notes from today’s lecture',
+    category: 'Study',
+    completed: true,
+  },
+]
+
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: 'Finish React assignment',
-      description: 'Complete the task manager project',
-      category: 'Study',
-      completed: false,
-    },
-    {
-      id: 2,
-      title: 'Buy groceries',
-      description: 'Pick up ingredients for dinner',
-      category: 'Personal',
-      completed: false,
-    },
-    {
-      id: 3,
-      title: 'Review class notes',
-      description: 'Read the notes from today’s lecture',
-      category: 'Study',
-      completed: true,
-    },
-  ])
+  const [tasks, setTasks] = useState(() => {
+    const storedTasks = localStorage.getItem('taskflow-tasks')
+
+    if (storedTasks) {
+      try {
+        return JSON.parse(storedTasks)
+      } catch {
+        localStorage.removeItem('taskflow-tasks')
+      }
+    }
+
+    return defaultTasks
+  })
   const [currentFilter, setCurrentFilter] = useState('All')
   const [categoryFilter, setCategoryFilter] = useState('All Categories')
   const [searchTerm, setSearchTerm] = useState('')
+
+  useEffect(() => {
+    localStorage.setItem('taskflow-tasks', JSON.stringify(tasks))
+  }, [tasks])
 
   function addTask(newTask) {
     setTasks([...tasks, newTask])
