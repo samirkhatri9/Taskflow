@@ -116,6 +116,30 @@ body {
   font-size: 0.9rem;
 }
 
+.edit-fields {
+  display: grid;
+  gap: 8px;
+}
+
+.edit-fields label {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.edit-fields input,
+.edit-fields textarea,
+.edit-fields select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbd3dc;
+  border-radius: 4px;
+  font: inherit;
+}
+
+.edit-fields textarea {
+  resize: vertical;
+}
+
 .task-actions {
   display: flex;
   align-items: center;
@@ -134,13 +158,34 @@ body {
   padding: 8px 12px;
   border: 0;
   border-radius: 4px;
-  background-color: #c93c3c;
   color: #ffffff;
   font: inherit;
   cursor: pointer;
 }
 
-.task-actions button:hover {
+.edit-button,
+.save-button {
+  background-color: #2d6cdf;
+}
+
+.edit-button:hover,
+.save-button:hover {
+  background-color: #2459b9;
+}
+
+.cancel-button {
+  background-color: #6c757d;
+}
+
+.cancel-button:hover {
+  background-color: #565e64;
+}
+
+.delete-button {
+  background-color: #c93c3c;
+}
+
+.delete-button:hover {
   background-color: #a82f2f;
 }
 

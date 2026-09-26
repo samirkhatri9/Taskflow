@@ -49,6 +49,18 @@ function App() {
     setTasks(remainingTasks)
   }
 
+  function handleEditTask(taskId, updatedTask) {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, ...updatedTask }
+      }
+
+      return task
+    })
+
+    setTasks(updatedTasks)
+  }
+
   return (
     <main className="app-container">
       <Header />
@@ -57,6 +69,7 @@ function App() {
         tasks={tasks}
         onToggleTask={handleToggleTask}
         onDeleteTask={handleDeleteTask}
+        onEditTask={handleEditTask}
       />
     </main>
   )
